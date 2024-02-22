@@ -38,17 +38,6 @@ public class WebSecurityConfig {
 		return http.build();
 	}
 
-	@Bean
-	public UserDetailsService userDetailsService() {
-		UserDetails user =
-			 User
-				.withUsername("user")
-				.password(passwordEncoder().encode("password"))
-				.roles("USER")
-				.build();
-
-		return new InMemoryUserDetailsManager(user);
-	}
 
 	// userManager bean to create and read user data directly from db
 	// userManager.createUser(UserDetails user) adds user
