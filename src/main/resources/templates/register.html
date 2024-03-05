@@ -5,17 +5,23 @@
     </head>
     <body>
         <!-- Check for parameters -->
-        <div th:if="${param.error}">
-            Invalid username and password.
+        <div th:if="${exists}">
+            Username already taken.
         </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
+        <div th:if="${param.success}">
+            Registration successful.
         </div>
-        <!-- Login Form -->
-        <form th:action="@{/login}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
-            <div><input type="submit" value="Sign In"/></div>
+        <!-- Registration Form -->
+        <form th:action="@{/register}" th:object="${userForm}" method="post">
+            <div><label> User Name : <input type="text" th:field="*{username}"/> </label></div>
+            <ul>
+                <li th:each="err : ${#fields.errors('*{username}')}" th:text="${err}"></li>
+            </ul>
+            <div><label> Password: <input type="password" th:field="*{password}"/> </label></div>
+            <ul>
+                <li th:each="err : ${#fields.errors('*{password}')}" th:text="${err}"></li>
+            </ul>
+            <div><input type="submit" value="Register"/></div>
         </form>
     </body>
 </html>
