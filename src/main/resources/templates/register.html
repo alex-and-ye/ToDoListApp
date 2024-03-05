@@ -4,10 +4,24 @@
         <title>ToDoList App</title>
     </head>
     <body>
-        <h3>Registration form</h3>
-        <form th:action="@{/register}" method="post">
-            <div><label> User Name : <input type="text" name="username"/> </label></div>
-            <div><label> Password: <input type="password" name="password"/> </label></div>
+        <!-- Check for parameters -->
+        <div th:if="${exists}">
+            Username already taken.
+        </div>
+        <div th:if="${param.success}">
+            Registration successful.
+        </div>
+        <!-- Registration Form -->
+        <form th:action="@{/register}" th:object="${userForm}" method="post">
+            <div><label> User Name : <input type="text" th:field="*{username}"/> </label></div>
+            <ul>
+                <li th:each="err : ${#fields.errors('*{username}')}" th:text="${err}"></li>
+            </ul>
+            <div><label> Password: <input type="password" th:field="*{password}"/> </label></div>
+            <ul>
+                <li th:each="err : ${#fields.errors('*{password}')}" th:text="${err}"></li>
+            </ul>
+
             <div><input type="submit" value="Register"/></div>
         </form>
     </body>
