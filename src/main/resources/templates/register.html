@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head>
-        <title>Spring Security Example </title>
+        <title>ToDoList App</title>
     </head>
     <body>
         <!-- Check for parameters -->
@@ -21,6 +21,7 @@
             <ul>
                 <li th:each="err : ${#fields.errors('*{password}')}" th:text="${err}"></li>
             </ul>
+
             <div><input type="submit" value="Register"/></div>
         </form>
     </body>
