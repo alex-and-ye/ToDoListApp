@@ -21,7 +21,6 @@
             <ul>
                 <li th:each="err : ${#fields.errors('*{password}')}" th:text="${err}"></li>
             </ul>
-
             <div><input type="submit" value="Register"/></div>
         </form>
     </body>

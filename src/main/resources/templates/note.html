@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>My Notes</title>
+    </head>
+<body>
+  <div th:if="${user}"> <h1>Welcome, <span th:text="${user.username}"></span>!</h1>
+
+    <h2>Create a New Note</h2>
+    <form th:action="@{/notes/add}" method="post">
+        <input type="text" name="title" placeholder="Note Title" required>
+        <button type="submit">Create Note</button>
+    </form>
+
+    <h2>Your Notes</h2>
+    <ul th:if="${notes}">
+        <li th:each="note : ${notes}">
+            <a th:href="@{/notes/{noteID}(noteID=${note.id})}" th:text="${note.title}"></a>
+        </li>
+    </ul>
+  </div>
+</body>
+</html>
